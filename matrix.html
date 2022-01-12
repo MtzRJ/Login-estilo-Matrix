@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forum Matrix</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="login-box"> <!--- Formularios de login %%%%%%%%%%%%%%-->
+	<form class="" action="#">
+  <div class="form-group">
+  	<h4>Bem-Vindo a Matrix</h4>
+    <label for="email">E-mail:</label>
+    <input type="email" class="form-control" placeholder="Enter e-mail" id="email">
+  </div>
+  <div class="form-group">
+    <label for="pwd">Senha:</label>
+    <input type="password" class="form-control" placeholder="Enter password" id="pwd">
+  </div>
+  <div class="form-group form-check">
+    <label class="form-check-label">
+      <input class="form-check-input" type="checkbox"> Lembrar
+    </label>
+  </div>
+  <button type="submit" class="btn btn-success">Entrar</button>
+    <a class="cadastro" href="cadastro.html">Possui Cadastro?</a>
+</form>
+</header><!-- fim de formulario de login %%%%%%-->
+	
+<canvas width="500" height="200" id="canv"></canvas>
+ 	<script type="text/javascript">
+ 		const canvas = document.getElementById('canv');
+ 		const ctx = canvas.getContext('2d');
+ 		const w = canvas.width = document.body.offsetWidth;
+ 		const h = canvas.height = document.body.offsetHeight;
+ 		const cols = Math.floor(w/20) + 1;
+ 		const yPos = Array(cols).fill(0);
+
+ 		//ctx
+
+ 		ctx.fillStyle ='#000';
+ 		ctx.fillRect(0,0,w,h);
+
+ 		//function
+
+ 		function DesenhaMatrix() {
+ 			ctx.fillStyle = '#0001';
+ 			ctx.fillRect(0,0,w,h);
+
+ 			ctx.fillStyle = '#0f0'
+ 			ctx.font = '19pt Nothing You Could Do, cursive;'
+
+ 			yPos.forEach((y,ind) => {
+ 				const text = String.fromCharCode(Math.random() * 128);
+ 				const x = ind * 20;
+ 				ctx.fillText(text,x,y);
+
+ 				if(y > 100 + Math.random() *10000) yPos[ind] = 0;
+ 				else yPos[ind] = y + 20;
+ 			});
+ 		}
+ 		setInterval(DesenhaMatrix, 50);
+ 	</script>
+</body>
+</html>
